@@ -1,0 +1,50 @@
+
+.social-list {
+    list-style: none;
+    display: flex;
+}
+
+.social-list li:nth-child(1):hover .fa {
+    color: #3b5999;
+}
+.social-list li:nth-child(2):hover .fa {
+    color: #c32aa3;
+}
+.social-list li:nth-child(3):hover .fa {
+    color: #c90000;
+}
+.social-list li:nth-child(4):hover .fa {
+    color: #0077b5;
+}
+
+.social-list .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 20%;
+    background-color: #f8f8f8;
+    margin: 7px;
+    color: rgb(20, 80, 102);
+    font-size: 20px;
+    text-decoration: none;
+    transition: .4s ease-out;
+    box-shadow: inset 0px 0px 0px 5px rgba(255, 255, 255, 0.753),
+                0px 3px 10px rgba(0, 0, 0, 0.411);
+}
+
+.social-list .social-link:hover {
+    border-radius: 50%;
+    box-shadow: inset 0px 0px 0px 5px rgba(255, 255, 255, 0.753),
+                0px 5px 5px rgba(0, 0, 0, 0.61);
+}
+
+.fa {
+    transition: .4s
+}
+
+.social-list .social-link:hover .fa {
+    transform: scale(1.8);
+    transition: .4s;
+}

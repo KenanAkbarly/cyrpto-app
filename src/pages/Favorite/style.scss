@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.favorite_body{
+    width: 100%;
+    height: 100vh;
+    background-image: url('https://media2.giphy.com/media/jtoTdx6Wf1rPUvCmnd/giphy.gif?cid=ecf05e47yom7kuo32ib7qtndmuo0om0licqf434p909zgt5q&rid=giphy.gif&ct=g');
+    background-repeat: no-repeat;
+    background-size:cover;
+    position: relative;
+    img{
+        width: 100%;
+        height: 100vh;
+    }
+    .emptyBtn{
+        position: absolute;
+        top: 50;
+        left: 50%;
+        transform: translate(-50%,-120%);
+        padding: 7px 20px;
+        border-radius: 10px;
+        border: none;
+        background-color: rgb(255, 153, 0);
+        color: white;
+    }
+    .favorite_container{
+        position: relative;
+        top: 50px;
+       .deleteBtn{
+        padding: 5px 10px;
+        border: none;
+        border-radius: 10px;
+        background-color: red;
+        color: white;
+       }
+        .empy_message{
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            .shoppingBtn{
+                padding: 5px 10px;
+                border: none;
+                border-radius: 10px;
+                background-color: rgb(37, 140, 230);
+                color: white;
+            }
+            p{
+                color: white;
+                font-size: 18px;
+            }
+        }
+        padding: 40px 0px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        width: 600px;
+        height: 500px;
+        margin: 0 auto;
+        /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
+        .products{
+            padding: 0px 20px;
+            margin: 0 auto;
+            width: 70%;
+            height: 50px;
+            background-color:rgba(244, 244, 244, 0.251);
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+           
+            .products_image{
+                img{
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+            .products_name{
+                color: white;
+            }
+            .products_price{
+                color: white;
+            }
+        }
+    }
+}
