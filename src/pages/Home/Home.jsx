@@ -6,24 +6,48 @@ import { Link, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { adProductToFavorite } from '../../redux/Slice/SliceFavorite'
 import { getProducts } from '../../service/getProducts'
+import ReactPaginate from 'react-paginate'
 const Home = () => {
   const [data,setData] = useState()
   const {id} = useParams()
   const [inputVal,setinputVal] = useState('')
   const [loading,setLoading] = useState(true)
   const dispatch = useDispatch()
- 
+  
+  const [pageCount,setpageCount] = useState(0)
+  const fetchComments = async(currenPage)=>{
+    const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=${currenPage}&sparkline=false`);
+    const data = await res.json();
+    return data
+  }
+  const handleClick = async(data)=>{
+    console.log(data.selected);
+
+    let currenPage = data.selected + 1;
+    
+    const commnentsFormServer = await fetchComments(currenPage)
+    setData(commnentsFormServer)
+  }
   const handleChange = (event)=>{
     setinputVal(event.target.value)
   }
+  
   useEffect(()=>{
     getProducts().then((res)=>{
       if(res.status ===200){
         setData(res.data)
+        // const total = res.headers.get('x-total-count');
+        // console.log('total number',total);
+        // console.log(res.data.length);
+        const total = res.data.length
+        setpageCount(total/100)
+        console.log(total);
+        console.log(res.data);
         setLoading(false)
       }
     })
   },[])
+  // console.log(data.length);
   return (
     <div className='home_body'>
       <div className='conatiner'>
@@ -50,7 +74,7 @@ const Home = () => {
   </thead>
   <tbody>
     {
-      loading?(<div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>):(
+      loading?(<div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>):(
         data && data.filter((item)=>{
           if(inputVal ===''){
             return item
@@ -73,17 +97,35 @@ const Home = () => {
   
             <td><button   onClick={()=>dispatch(adProductToFavorite(item))}   className='favoriteBtn'>Favorite</button></td>
             {/* <td><Link to={'/detail'}><button>Detail</button></Link></td> */}
-        
+         
           </tr>
           )
         })
       )
     }
    
-    
+   
   </tbody>
 </table>
         </div>
+<ReactPaginate previousLabel={'previous'}
+          nextLabel={'next'}
+          // breakLabel={'...'}
+          pageCount={39}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange = {handleClick}
+          containerClassName={`pagination justify-content-center mt-3 `}
+          pageClassName = {''}
+          pageLinkClassName={'page-link'}
+          previousClassName={'page-item'}
+          previousLinkClassName={'page-link'}
+          nextClassName={'page-item'}
+          nextLinkClassName={'page-link'}
+          breakClassName={'page-item'}
+          breakLinkClassName={'page-link'}
+          activeClassName={'active'}
+/>
         </div>
   
       </div>
